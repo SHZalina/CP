@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'pages',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +78,11 @@ WSGI_APPLICATION = 'CP.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bsdb',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost'
     }
 }
 
