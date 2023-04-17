@@ -12,7 +12,7 @@
           <p class="lead">Поиск животных по виду, породе, и возрасту. 
             Введите желаемые характеристики: </p>
           <div class="search">
-            <form action="search.html">
+            <form action="{% url 'search' %}"> <!-- { % url 'search.html' %} -->
               <!-- Form Row 1 -->
               <div class="form-row">
                 <div class="col-md-4 mb-3">
