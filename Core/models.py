@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 class UserManager(BaseUserManager):
-    
     def create_user(self, username, email=None, password=None, **extrafields):
         if not username:
             raise ValueError('Users must have an username')
@@ -29,6 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     favourites = models.CharField(max_length=200,default='')
     rate_listing = models.CharField(max_length=200,default='')
     phone = models.BigIntegerField(default=0, unique=True)
+    avatar = models.ImageField(upload_to='img/avatars/')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
