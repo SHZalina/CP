@@ -1,15 +1,16 @@
 from django.db import models
 from datetime import datetime
 from Core.models import User
-#from .modelchoices import category_choices, state_choices
+from .modelchoices import category_choices, city_choices
+
 # Create your models here.
 class Listing(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)#, choices=category_choices)
+    category = models.CharField(max_length=100, choices=category_choices)
     breed = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)#, choices=state_choices)
+    city = models.CharField(max_length=100, choices=city_choices)
 
     description = models.TextField(blank=True)
     price = models.IntegerField()

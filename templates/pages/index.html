@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block title %} Главная{% endblock %}
 {% block content %}
 
@@ -16,62 +17,61 @@
               <!-- Form Row 1 -->
               <div class="form-row">
                 <div class="col-md-4 mb-3">
-                  <label class="sr-only">Search</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Имя">
+                  <label class="sr-only">Поиск</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="">
                 </div>
-
+  
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">Вид</label>
-                  <select name="state" class="form-control">
+                  <select name="category" class="form-control">
                     <option selected="true" disabled="disabled">Виды</option>
-                    <option value="dog">Собак</option>
-                    <option value="cat">Кот</option>
-                    <option value="humster">Грызун</option>
-                    <option value="fish">Рыбка</option>
-                    <option value="bird">Птичка</option>
-                    <option value="reptile">Рептилии</option>
-                    <option value="other">Другие</option>
-                    </select>
+                    {% for key,value in category_choices.items %}
+                      <option value="{{key}}"
+                      {% if key == values.category %}
+                      selected
+                      {% endif %}
+                      >{{value}}</option>
+                      {%endfor%}
+  
+                  </select>
                 </div>
-
+  
                 <div class="col-md-4 mb-3">
-                  <label class="sr-only">Города</label>
-                  <select name="state" class="form-control">
+                  <label class="sr-only">Город</label>
+                  <select name="city" class="form-control">
                     <option selected="true" disabled="disabled">Города (все)</option>
-                    <option value="KZN">Казань</option>
-                    <option value="NCH">Набережные Челны</option>
-                    <option value="ALM">Альметьевск</option>
-                    <option value="MSC">Москва</option>
-                    <option value="SPB">Санкт-Петербург</option>
-                    <option value="AST">Астрахань</option>
-                    <option value="KGP">Когалым</option>
-                    <option value="KRR">Краснодар</option>
-                    <option value="SCH">Сочи</option>
-                    <option value="KGD">Калининград</option>
-                    <option value="PEE">Пермь</option>
-                    <option value="NUX">Новый Уренгой</option>
-                    <option value="MMK">Мурманск</option>
-                    <option value="VOG">Волгоград</option>
-                    <option value="OGZ">Владикавказ</option>
-                    <option value="GRV">Грозный</option>
-                    <option value="UUS">Южно-Сахалинск</option>
-                    <option value="PKS">Петропавловск-Камчатский</option>
-                    </select>
+                      {% for key,value in city_choices.items %}
+                      <option value="{{key}}"
+                      {% if key == values.city %}
+                      selected
+                      {% endif %}
+                      >{{value}}</option>
+                      {%endfor%}
+  
+                  </select>
                 </div>
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6 mb-3">
                   <label class="sr-only">Порода</label>
                   <input type="text" name="breed" class="form-control" placeholder="Порода">
                 </div>
-
                 <div class="col-md-6 mb-3">
-                  <label class="sr-only">Ценник</label>
-                  <input type="text" name="city" class="form-control" placeholder="Цена (в рублях)">
+                  <select name="price" class="form-control">
+                    <option selected="true" disabled="disabled">Максимальная стоимость</option>
+                    {% for key,value in price_choices.items %}
+                      <option value="{{key}}"
+                      {% if key == values.price %}
+                      selected
+                      {% endif %}
+                      >{{value}}</option>
+                      {%endfor%}
+  
+                  </select>
                 </div>
               </div>
-              <button class="btn btn-secondary btn-block mt-4" type="submit">Поиск</button>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Найти</button>
             </form>
           </div>
         </div>
@@ -84,107 +84,61 @@
     <div class="container">
       <h3 class="text-center mb-3">Последние выставленные объявления</h3>
       <div class="row">
-        <!-- Listing 1 -->
+        {% if listings %}
+        {% for listing in listings %}
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/homes/home-1.jpg" alt="">
+            <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
             <div class="card-img-overlay">
               <h2>
-                <span class="badge badge-secondary text-white">100000000,00</span>
+                <span class="badge badge-secondary text-white"> {{ listing.price | intcomma }}</span>
               </h2>
             </div>
             <div class="card-body">
               <div class="listing-heading text-center">
-                <h4 class="text-primary">Барон</h4>
+                <h4 class="text-primary">{{listing.title}}</h4>
                 <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Екатеринбург</p>
+                  <i class="fas fa-map-marker text-secondary"></i> {{listing.city}} {{listing.address}}</p>
               </div>
               <hr>
               <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Порода: Бернский зендхаунд</div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Вид: Собак</div>
+                <div class="col-8">
+                  <i class="fas fa-th-large"></i> Вид:{{listing.category}}
+                </div>
               </div>
+              <div class="row py-2 text-secondary">
+                <div class="col-8">
+                  <i class="fas fa-user"></i> Хозяин(владелец??):{{listing.owner.first_name}}
+                </div>
+                </div>
+                <div class="row py-2 text-secondary">
+                <div class="col-8">
+                  <i class="fas fa-phone"></i> Номер для связи:{{listing.owner.phone}}
+                </div>
+                </div>
+                <div class="row py-2 text-secondary">
+              <div class="col-10">
+                <i class="fas fa-envelope"></i> Email:{{listing.owner.email}}
+                </div>
+            </div>
+            </div>
+              <hr>
               <div class="row text-secondary pb-2">
                 <div class="col-6">
-                  <i class="fas fa-clock"></i> 2 дня назад</div>
+                  <i class="fas fa-clock"></i>   {{listing.list_date | timesince}}</div>
               </div>
               <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
+              <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Подробнее</a>
           </div>
         </div>
-
-        <!-- Listing 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/homes/home-1.jpg" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">0,00</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Живоглот</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Казань</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Порода: Дворняжка</div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Вид: Кот</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 дней назад</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-md-12">
+            <p>В настоящий момент актуальных объявлений нет</p>
         </div>
-
-        <!-- Listing 3 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/homes/home-1.jpg" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">500,00</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Лариса Павловна</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Набережные Челны</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Порода: Черная</div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Вид: Крыса</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 1 неделю назад</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
+        {%endif%}
+      </div>
+        
       </div>
     </div>
   </section>
