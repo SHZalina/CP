@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'pages',
     'Core',
     'listings',
+    'accounts',
+    'inquiry',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cpdb',
         'USER': 'postgres',
-        'PASSWORD': '3301',
+        'PASSWORD': 'root',
         'HOST': 'localhost'
     }
 }

@@ -4,6 +4,7 @@ import string
 from Core.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
+from inquiry.models import inquiry
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -128,3 +129,11 @@ def userlogout(request):
         logout(request)
         messages.success(request, "you are now logged out")
         return redirect('index')
+    
+@login_required
+def myinquiries(request):
+    myinquiry = inquiry.objects.all().filter(user_id=request.user.id)
+    context = {
+        'myinquiries': myinquiry
+    }
+    return render(request, 'accounts/dashboard_myinquiries.html', context)
