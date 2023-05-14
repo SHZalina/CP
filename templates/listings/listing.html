@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
-{% block tiltle %} Listings {% endblock %}
+{% block tiltle %} Объявление {% endblock %}
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
@@ -91,19 +91,11 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-money-bill-alt"></i> Запрашиваемая цена:
-                  <span class="float-right"> {{ listing.price | intcomma }}</span>
+                  <span class="float-right">  {{ listing.price | intcomma }}</span>
                 </li>
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-list-alt"></i> Вид:
-                  <span class="float-right">{{ listing.category}}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-list-alt"></i> Рейтинг:
-                  {%if current_rating%}
-                    <span class="float-right">{{ current_rating }}</span>
-                  {%else%}
-                    <p>No rating made for this listing yet</p>
-                  {%endif%}
+                  <span class="float-right"> {{ listing.category}}</span>
                 </li>
               </ul>
             </div>
@@ -111,27 +103,25 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-calendar"></i> Дата публикации:
-                  <span class="float-right">{{listing.list_date | timesince}}</span>
+                  <span class="float-right"> {{listing.list_date | timesince}}</span>
                 </li>
                 <li class="list-group-item text-secondary">
-                  <i class="fas fa-user"></i> Хозяин(владелец??):
-                  <span class="float-right">{{ listing.owner.first_name }}
+                  <i class="fas fa-user"></i> Хозяин:
+                  <span class="float-right"> {{ listing.owner.first_name }}
                   </span>
                 </li>
                 <li class="list-group-item text-secondary">
                     <i class="fas fa-phone"></i> Номер для связи:
-                    <span class="float-right">{{ listing.owner.phone }}
+                    <span class="float-right"> {{ listing.owner.phone }}
                     </span>
                   </li>
-
-
               </ul>
             </div>
           </div>
           <!-- Description -->
           <div class="row mb-5">
             <div class="col-md-12">
-              <b>Описание: </b>{{listing.description}}
+              <b>Описание: </b> {{listing.description}}
             </div>
           </div>
         </div>
@@ -185,7 +175,7 @@
               <textarea name="message" class="form-control"></textarea>
             </div>
             <hr>
-            <input type="submit" value="Send" class="btn btn-block btn-secondary">
+            <input type="submit" value="Отправить" class="btn btn-block btn-secondary">
           </form>
         </div>
       </div>

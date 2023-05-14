@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cpdb',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': '3301',
         'HOST': 'localhost'
     }
 }
