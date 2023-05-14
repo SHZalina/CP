@@ -6,8 +6,12 @@ from listings.models import Listing
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from inquiry.models import inquiry
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
+
+from inquiry.models import inquiry
+from listings.forms import UpdateForm
 
 def random_string(string_length = 6):
     letters = string.ascii_letters
@@ -162,3 +166,19 @@ def dashboard(request):
         'listings': mylistings
     }
     return render(request, 'accounts/dashboard.html', context)
+
+@login_required
+def myinquiries(request):
+    myinquiry = inquiry.objects.all().filter(user_id=request.user.id)
+    context = {
+        'myinquiries': myinquiry
+    }
+    return render(request, 'accounts/dashboard_myinquiries.html', context)
+
+@login_required
+def inquiry1(request):
+    myinquiry = inquiry.objects.all().filter(owner_id=request.user.id)
+    context = {
+        'inquiries': myinquiry
+    }
+    return render(request, 'accounts/dashboard_inquiries.html', context)
