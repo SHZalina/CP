@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-{% block title%} DashBoard {% endblock%}
+{% block title%} Личный кабинет {% endblock%}
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4"> {{request.user.first_name}}'s Dashboard</h1>
-          <p class="lead">Manage your Listings/Inquiries</p>
+          <h1 class="display-4"> {{request.user.first_name}}'s личный кабинет</h1>
+          <p class="lead">Управление вашими объявлениями</p>
           {% include 'partials/_alerts.html' %}
-
         </div>
       </div>
     </div>
@@ -21,9 +20,9 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="{% url 'index'%}">
-              <i class="fas fa-home"></i> Home</a>
+              <i class="fas fa-home"></i> Главная</a>
           </li>
-          <li class="breadcrumb-item active"> Dashboard</li>
+          <li class="breadcrumb-item active"> Личный кабинет</li>
         </ol>
       </nav>
     </div>
@@ -33,9 +32,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2>Welcome {{request.user.first_name}} {{request.user.last_name}}</h2>
+          <h2>Добро пожаловать, {{request.user.first_name}} {{request.user.last_name}}</h2>
 
-          <p>Here are your Inquiries</p>
+          <p>Здесь ваши объявления:</p>
           <hr>
           {% if listings %}
           <table class="table">
@@ -60,8 +59,8 @@
             </tbody>
           </table>
           {%else%}
-          <p>You have not created any listings </p>
-          <button class='btn btn-primary'>Create a New Lisitng</button>
+          <p>У вас нет еще ни одного объявления </p>
+          <button class='btn btn-primary'>Создайте новое обьявление</button>
           {%endif%}
         </div>
       </div>

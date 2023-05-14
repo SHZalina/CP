@@ -41,15 +41,15 @@ def register(request):
         # валидация
         if password == password2:
             if user.objects.filter(username=username).exists():
-                messages.error(request, 'Username is already taken')
+                messages.error(request, 'Пользователь с таким именем уже существует')
                 return redirect('register')
             else:
                 if user.objects.filter(email=email).exists():
-                    messages.error(request, 'Email is already used')
+                    messages.error(request, 'Пользователь с такой почтой уже существует')
                     return redirect('register')
                 else:
                     if user.objects.filter(phone=phone).exists():
-                        messages.error(request, 'Phone no  is already used')
+                        messages.error(request, 'Пользователь с таким телефонным номером уже существует')
                         return redirect('register')
                     else:
                         send_mail(
@@ -62,7 +62,7 @@ def register(request):
                         request.method = 'GET'
                         return render(request, 'accounts/confirmregister.html', context)
         else:
-            messages.error(request,'passwords donot match')
+            messages.error(request,'Пароли не совпадают')
             return redirect('register')
     else:
         return render(request, 'accounts/register.html')
@@ -101,10 +101,10 @@ def confirmregister(request):
                 avatar = avatar)
             user.save()
             login(request, user)
-            messages.success(request, 'You are now logged in')
+            messages.success(request, 'Вы успешно зашли в аккаунт')
             return redirect('index')
         else:
-            messages.error(request, 'Invalid Confirmation Code')
+            messages.error(request, 'Неправильно введен код')
             return render(request, 'accounts/confirmregister.html', context)
     else:
         return redirect('register')
@@ -116,10 +116,10 @@ def userlogin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'You are now logged in')
+            messages.success(request, 'Вы успешно зашли в аккаунт')
             return redirect('index')
         else:
-            messages.error(request, 'Invalid Credentials')
+            messages.error(request, 'Неправильно введены данные')
             return redirect('login')
     else:
         return render(request, 'accounts/login.html')
@@ -128,7 +128,7 @@ def userlogin(request):
 def userlogout(request):
     if request.method == 'POST':
         logout(request)
-        messages.success(request, "You are now logged out")
+        messages.success(request, "Вы успешно зашли в аккаунт")
         return redirect('index')
     
 @login_required
@@ -137,7 +137,7 @@ def change_password(request):
         user = request.user
         currentpassword = request.POST['currentpassword']
         if not check_password(currentpassword, user.password):
-            messages.error(request, 'Incorrect Current Password')
+            messages.error(request, 'Неверно введен текущий пароль')
             return redirect('dashboard')
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -145,11 +145,11 @@ def change_password(request):
         if password1 == password2:
             user.set_password(password1)
             user.save()
-            messages.success(request, 'You have been logged out')
-            messages.success(request, 'You have successfully changed the password')
-            messages.success(request, 'Use your new password to login')
+            messages.success(request, 'Вы успешно вышли со страницы')
+            messages.success(request, 'Вы успешно изменили пароль')
+            messages.success(request, 'Используйте новый пароль, для того чтобы зайти в свой аккаунт')
         else:
-            messages.error(request, 'Passwords do not match')
+            messages.error(request, 'Пароли не совпадают')
         return redirect('dashboard')
     
     else:

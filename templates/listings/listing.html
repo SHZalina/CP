@@ -8,7 +8,7 @@
         <div class="col-md-12">
           <h1 class="display-4">{{listing.title}}</h1>
           <p class="lead">
-            <i class="fas fa-map-marker"></i>{{listing.city}} {{listing.address}}</p>
+            <i class="fas fa-map-marker"></i>{{listing.city}}, {{listing.address}}</p>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'index' %}">Главная</a>
           </li>
           <li class="breadcrumb-item">
             <a href="{% url 'listings' %}">Объявления</a>

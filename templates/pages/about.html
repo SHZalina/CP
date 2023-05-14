@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-{% block title %} About {% endblock %}
+{% block title %} О нас {% endblock %}
 {% block content %}
+{% load static %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4">Котопес</h1>
-          <p class="lead">Сервис, который поможет Вам найти идеальное животное для себя и своей семьи</p>
+          <p class="lead">Сервис, который поможет Вам найти лучшего друга!</p>
         </div>
       </div>
     </div>
@@ -19,9 +20,9 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="index.html">
-              <i class="fas fa-home"></i> Home</a>
+              <i class="fas fa-home"></i> Главная</a>
           </li>
-          <li class="breadcrumb-item active"> About</li>
+          <li class="breadcrumb-item active"> О нас</li>
         </ol>
       </nav>
     </div>
@@ -31,19 +32,23 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h2>We Search For The Perfect Home</h2>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <h2>Мы помогаем искать животным новый дом!</h2>
+          <p class="lead">А вам - нового члена семьи и лучшего друга!</p>
           <img src="assets/img/about.jpg" alt="">
-          <p class="mt-4">Наша цель - помочь людям найти своего идеального питомца и создать счастливую семью. Мы предоставляем широкий выбор животных разных пород и возрастов, чтобы каждый мог найти то, что ему подходит. Мы также стараемся помочь животным, которые нуждаются в новых домах, и поэтому предоставляем возможность размещать объявления о поиске новых владельцев для брошенных или ненужных животных.</p>
+          <p class="mt-4">Наша цель - помочь людям найти своего идеального питомца
+             и создать счастливую семью. Мы предоставляем широкий выбор животных разных 
+             пород и возрастов, чтобы каждый мог найти то, что ему подходит. Мы также 
+             стараемся помочь животным, которые нуждаются в новых домах, и поэтому 
+             предоставляем возможность размещать объявления о поиске новых владельцев 
+             для брошенных или ненужных животных.</p>
         </div>
         <div class="col-md-4">
           <div class="card">
-            <img class="card-img-top" src="assets/img/realtors/kyle.jpg" alt="Seller of the month">
+            <img src="{% static 'img/about_cats.jpg' %}" class="card-img-top" alt="Котеньки">
             <div class="card-body">
-              <h5 class="card-title">Seller Of The Month</h5>
-              <h6 class="text-secondary">Maria Polyakova</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt amet, illo itaque similique repellat.
-                content.
+              <h5 class="card-title">Коты</h5>
+              <h6 class="text-secondary">Это две кошки</h6>
+              <p class="card-text">Лучшие кошаки в Когалыме!
               </p>
             </div>
           </div>
@@ -54,33 +59,34 @@
 
   <!-- Work -->
   <section id="work" class="bg-dark text-white text-center">
-    <h2 class="display-4">We Work For You</h2>
-    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
+    <h2 class="display-4">Мы рады помочь Вам!</h2>
+    <h4>Открывайте свое сердце для новых друзей, 
+      но и не забывайте о старых.</h4>
     <hr>
-    <a href="listings.html" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+    <a href="listings.html" class="btn btn-secondary text-white btn-lg">Список актуальных объявлений</a>
   </section>
 
   <!-- Team -->
   <section id="team" class="py-5">
     <div class="container">
-      <h2 class="text-center">Our Team</h2>
+      <h2 class="text-center">Наша команда</h2>
       <div class="row text-center">
         <div class="col-md-4">
           <img src="assets/img/realtors/kyle.jpg" alt="" class="rounded-circle mb-3">
           <h4>Maria Polyakova</h4>
           <p class="text-success">
-            <i class="fas fa-award text-success mb-3"></i> Realtor</p>
+            <i class="fas fa-award text-success mb-3"></i> Разработчик</p>
           <hr>
           <p>
-            <i class="fas fa-phone"></i> (555)-555-5555</p>
+            <i class="fas fa-phone"></i> (800)-555-3535</p>
           <p>
-            <i class="fas fa-envelope-open"></i> kyle@btrealestate.co</p>
+            <i class="fas fa-envelope-open"></i> mariia.poliakova.2013@gmail.com</p>
         </div>
 
         <div class="col-md-4">
           <img src="assets/img/realtors/mark.jpg" alt="" class="rounded-circle mb-3">
           <h4>Zalina Shakirova</h4>
-          <p class="text-success">Realtor</p>
+          <p class="text-success"> Разработчик, тимлид</p>
           <hr>
           <p>
             <i class="fas fa-phone"></i> (444)-444-4444</p>
@@ -91,7 +97,7 @@
         <div class="col-md-4">
           <img src="assets/img/realtors/jenny.jpg" alt="" class="rounded-circle mb-3">
           <h4>ZiyakaevKostarev & Co </h4>
-          <p class="text-success">Realtor</p>
+          <p class="text-success"> Заказчики</p>
           <hr>
           <p>
             <i class="fas fa-phone"></i> (333)-333-3333</p>
