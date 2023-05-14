@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% block title %} Reset Confirm {% endblock%}
+{% block title %} Изменение пароля {% endblock%}
 {% block content %}
 <style>
     #id_new_password1,#id_new_password2{
@@ -22,7 +22,7 @@
         <input type="submit" value="Chage Password" class="btn btn-primary">
     </form>
     {% else %}
-    <p> The link is invalid , maybe because the link was already used. Please request a new one!</p>
+    <p> Некорректная ссылка, введите другую!</p>
     {% endif %}
 </div>
 {% endblock %}

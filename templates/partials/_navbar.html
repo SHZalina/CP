@@ -2,8 +2,8 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'index'%}">
-        <img src="{% static 'img/logo.png' %}" class="logo" alt="">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'img/logo.png' %}" class="logo" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
           {% else%}
             class="nav-item mr-3"
           {% endif%}>
-            <a class="nav-link" href="{% url 'index'%}">Home</a>
+            <a class="nav-link" href="{% url 'index' %}">Главная</a>
           </li>
           <li 
           {% if 'about' in request.path %}
@@ -24,7 +24,7 @@
           {% else%}
             class="nav-item mr-3"
           {% endif%}>
-            <a class="nav-link" href="{% url 'about'%}">About</a>
+            <a class="nav-link" href="{% url 'about'%}"> О нас</a>
           </li>
           <li 
           {% if 'listing' in request.path %}
@@ -32,7 +32,7 @@
           {% else%}
             class="nav-item mr-3"
           {% endif%}>
-            <a class="nav-link" href="{% url 'listings'%}">Featured Listings</a>
+            <a class="nav-link" href="{% url 'listings'%}"> Все объявления</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -45,12 +45,12 @@
             {% endif%}
             >
               <a class="nav-link" href="{% url 'dashboard' %}">
-                <i class="fas fa-user-plus"></i> {{request.user.first_name}}(Dashboard)</a>
+                <i class="fas fa-user-plus"></i> {{request.user.first_name}} (Личный кабинет)</a>
             </li>
             <li class="nav-item mr-3">
               <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
                 <i class="fas fa-sign-in-alt"></i>
-                Logout</a>
+                Выйти</a>
                 <form action="{% url 'logout' %}" method="POST" id="logout">
                   {% csrf_token %}
                   <input type="hidden">
@@ -64,7 +64,8 @@
             class="nav-item mr-3"
           {% endif%}>
               <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
+                <i class="fas fa-user-plus"></i>
+                 Зарегистрироваться</a>
             </li>
             <li 
           {% if 'login' in request.path %}
@@ -74,7 +75,7 @@
           {% endif%}>
               <a class="nav-link" href="{% url 'login' %}">
                 <i class="fas fa-sign-in-alt"></i>
-                Login</a>
+                Войти</a>
             </li>
           {% endif %}
         </ul>
