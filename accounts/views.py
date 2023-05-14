@@ -10,6 +10,9 @@ from inquiry.models import inquiry
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 
+from inquiry.models import inquiry
+from listings.forms import UpdateForm
+
 def random_string(string_length = 6):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) 
@@ -171,3 +174,11 @@ def myinquiries(request):
         'myinquiries': myinquiry
     }
     return render(request, 'accounts/dashboard_myinquiries.html', context)
+
+@login_required
+def inquiry1(request):
+    myinquiry = inquiry.objects.all().filter(owner_id=request.user.id)
+    context = {
+        'inquiries': myinquiry
+    }
+    return render(request, 'accounts/dashboard_inquiries.html', context)
