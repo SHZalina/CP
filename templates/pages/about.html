@@ -63,7 +63,7 @@
     <h4>Открывайте свое сердце для новых друзей, 
       но и не забывайте о старых.</h4>
     <hr>
-    <a href="listings.html" class="btn btn-secondary text-white btn-lg">Список актуальных объявлений</a>
+    <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">Список актуальных объявлений</a>
   </section>
 
   <!-- Team -->
@@ -72,37 +72,36 @@
       <h2 class="text-center">Наша команда</h2>
       <div class="row text-center">
         <div class="col-md-4">
-          <img src="assets/img/realtors/kyle.jpg" alt="" class="rounded-circle mb-3">
+          <img src="{% static 'img/masha.jpg' %}" alt="" class="card-img-top">
           <h4>Maria Polyakova</h4>
-          <p class="text-success">
-            <i class="fas fa-award text-success mb-3"></i> Разработчик</p>
+          <p class="text-success"> Разработчик, тестировщик</p>
           <hr>
           <p>
             <i class="fas fa-phone"></i> (800)-555-3535</p>
           <p>
-            <i class="fas fa-envelope-open"></i> mariia.poliakova.2013@gmail.com</p>
+            <i class="fas fa-envelope-open"></i>  mariia.poliakova.2013@gmail.com</p>
         </div>
 
         <div class="col-md-4">
-          <img src="assets/img/realtors/mark.jpg" alt="" class="rounded-circle mb-3">
+          <img src="{% static 'img/zalina.jpg' %}" alt="" class="card-img-top">
           <h4>Zalina Shakirova</h4>
           <p class="text-success"> Разработчик, тимлид</p>
           <hr>
           <p>
             <i class="fas fa-phone"></i> (444)-444-4444</p>
           <p>
-            <i class="fas fa-envelope-open"></i> mark@btrealestate.co</p>
+            <i class="fas fa-envelope-open"></i> ZaIShakirova@stud.kpfu.ru</p>
         </div>
 
         <div class="col-md-4">
-          <img src="assets/img/realtors/jenny.jpg" alt="" class="rounded-circle mb-3">
+          <img src="{% static 'img/company.jpg' %}" alt="" class="card-img-top">
           <h4>ZiyakaevKostarev & Co </h4>
           <p class="text-success"> Заказчики</p>
           <hr>
           <p>
             <i class="fas fa-phone"></i> (333)-333-3333</p>
           <p>
-            <i class="fas fa-envelope-open"></i> jenny@btrealestate.co</p>
+            <i class="fas fa-envelope-open"></i> ZiyakaevKostarev@btrealestate.co</p>
         </div>
       </div>
     </div>
